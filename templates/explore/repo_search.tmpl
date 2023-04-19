@@ -20,8 +20,21 @@
 			<a class="{{if eq .SortType "fewestforks"}}active {{end}}item" href="{{$.Link}}?sort=fewestforks&q={{$.Keyword}}&language={{$.Language}}">{{.locale.Tr "repo.issues.filter_sort.fewestforks"}}</a>
 		</div>
 	</div>
+
+	<!-- Language -->
+	<div class="ui right dropdown type jump item">
+		<span class="text">Language {{svg "octicon-triangle-down" 14 "dropdown icon"}}</span>
+		<div class="menu">
+			<a class="item" href="{{$.Link}}?q={{$.Keyword}}&sort={{$.SortType}}">Any</a>
+			{{range $lang, $color := $.Languages}}
+			<a class="{{if eq $.Language $lang}}active {{end}}item" href="{{$.Link}}?q={{$.Keyword}}&language={{$lang}}&sort={{$.SortType}}">
+				<span class="gt-df gt-ac gt-mr-3"><i class="color-icon gt-mr-3" style="background-color: {{$color}}"></i>{{$lang}}</span>
+			</a>
+			{{end}}
+		</div>
+	</div>
 </div>
-<form class="ui form ignore-dirty" style="max-width: 90%">
+<form class="ui form ignore-dirty" style="max-width: 70%">
 	<input type="hidden" name="sort" value="{{$.SortType}}">
 	<input type="hidden" name="language" value="{{$.Language}}">
 	<div class="ui fluid action input">
